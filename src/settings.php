@@ -10,8 +10,18 @@ return [
 
         // Monolog settings
         'logger' => [
-            'name' => 'slim-app',
+            'name' => 'slim-admin',
             'path' => __DIR__ . '/../logs/app.log',
         ],
+
+        // Database settings
+       'database' =>[
+            'db_username' => 'user',
+            'db_password' => 'pass',
+            'db_database' => 'nome_banco',
+            'db_host'     => 'localhost',
+            'db_driver'   => 'mysql'
+       ]
+
     ],
 ];

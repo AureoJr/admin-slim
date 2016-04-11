@@ -17,3 +17,15 @@ $container['logger'] = function ($c) {
     $logger->pushHandler(new Monolog\Handler\StreamHandler($settings['path'], Monolog\Logger::DEBUG));
     return $logger;
 };
+
+// Database
+$container['database'] = function ($c) {
+    $db = $c->get('settings')['database'];
+    if($db['db_driver'] == 'mysql'){
+      $pdo = new PDO("mysql:host=" . $db['db_host'] . ";dbname=" . $db['db_name'],
+      $db['db_user'], $db['db_pass']);
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    }
+    return $pdo;
+};
